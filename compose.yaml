@@ -1,0 +1,12 @@
+
+services:
+  nginx:
+    build:
+      dockerfile: dockerfile
+    ports:
+      - "8759:80"
+    volumes:
+      - "nginx-logs:/var/log/nginx"
+volumes:
+  nginx-logs:
+
