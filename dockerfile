@@ -9,6 +9,7 @@ COPY nginx/nginx.conf /etc/nginx/
 
 COPY content/index.html /usr/share/nginx/html/
 COPY content/NoXSS.drawio.png /usr/share/nginx/html/
+COPY content/some.css /usr/share/nginx/html/
 
 RUN nginx -t
 

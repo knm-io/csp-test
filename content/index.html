@@ -3,6 +3,23 @@
   <head>
     <link rel="icon" href="NoXSS.drawio.png">
     <script>console.log("this script is lacking a nonce and should not run.");</script>
+    <script nonce="blarglfarz">console.log("this script has a nonce and should run.");</script>
+    <style nonce="blahblub">
+      h2 img {
+        height: 1em;
+      }
+    </style>
+    <style nonce="not-the-right-one">
+      h2 {
+        color: red;
+      }
+    </style>
+    <link rel="stylesheet" href="some.css" nonce="blahblub">
+  </head>
+  <body>
+    <h2><img src="NoXSS.drawio.png"> CSP Test</h2>
+    <div>Some JS should run: </div>
+    <script nonce="blarglfarz">document.querySelector('div').appendChild(document.createTextNode('script ran successfully'));</script>
     <script nonce="lalala">console.log("this script has the wrong nonce and should not run.");</script>
     <script nonce="lalala1">console.log("this script has the wrong nonce and should not run.");</script>
     <script nonce="lalala2">console.log("this script has the wrong nonce and should not run.");</script>
@@ -10,16 +27,5 @@
     <script nonce="lalala4">console.log("this script has the wrong nonce and should not run. (this report may be throttled)");</script>
     <script nonce="lalala5">console.log("this script has the wrong nonce and should not run. (this report may be throttled)");</script>
     <script nonce="lalala6">console.log("this script has the wrong nonce and should not run. (this report should be throttled)");</script>
-    <script nonce="blarglfarz">console.log("this script has a nonce and should run.");</script>
-    <style>
-      h2 img {
-        height: 1em;
-      }
-    </style>
-  </head>
-  <body>
-    <h2><img src="NoXSS.drawio.png"> CSP Test</h2>
-    <div>Some JS should run: </div>
-    <script nonce="blarglfarz">document.querySelector('div').appendChild(document.createTextNode('script ran successfully'));</script>
   </body>
 </html>
